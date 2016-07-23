@@ -37,7 +37,7 @@ class UserOnRole extends Model
     use SoftDeletes;
 
     public $table = 'user_on_role';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -58,8 +58,8 @@ class UserOnRole extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'users' => 'string',
-        'roles' => 'string',
+        'users' => 'array',
+        'roles' => 'array',
         'deleted_at' => 'string'
     ];
 
@@ -69,6 +69,6 @@ class UserOnRole extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 }
