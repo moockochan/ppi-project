@@ -7,15 +7,18 @@
 <!-- Users Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('users', 'Users:') !!}
-    {!! Form::text('users', null, ['class' => 'form-control']) !!}
+    <?php //{!! Form::text('users', null, ['class' => 'form-control']) !!} ?>
+    {!! Form::select('users[]', DB::table('users')->lists('name','email'),null,array('id'=>'users','class'=>'form-control select2','multiple'))!!}
 </div>
 
 <!-- Roles Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('roles', 'Roles:') !!}
-    {!! Form::text('roles', null, ['class' => 'form-control']) !!}
+    <?php //{!! Form::text('roles', null, ['class' => 'form-control']) !!} ?>
+    {!! Form::select('roles[]', DB::table('role')->lists('nama','id'),null,array('id'=>'roles','class'=>'form-control select2','multiple'))!!}
 </div>
-
+<?php
+/*
 <!-- Deleted At Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('deleted_at', 'Deleted At:') !!}
@@ -33,7 +36,7 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     {!! Form::date('updated_at', null, ['class' => 'form-control']) !!}
 </div>
-
+*/?>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

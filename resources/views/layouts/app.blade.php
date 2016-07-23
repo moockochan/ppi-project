@@ -157,5 +157,10 @@
     <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
 
     @yield('scripts')
+    <script language="javascript">
+      $(document).ready(function(){
+        $(".select2").select2();
+      });
+    </script>
 </body>
 </html>

@@ -74,9 +74,9 @@ class UserOnRoleDataTable extends DataTable
         return [
             'users' => ['name' => 'users', 'data' => 'users'],
             'roles' => ['name' => 'roles', 'data' => 'roles'],
-            'deleted_at' => ['name' => 'deleted_at', 'data' => 'deleted_at'],
+            //'deleted_at' => ['name' => 'deleted_at', 'data' => 'deleted_at'],
             'created_at' => ['name' => 'created_at', 'data' => 'created_at'],
-            'updated_at' => ['name' => 'updated_at', 'data' => 'updated_at']
+            //'updated_at' => ['name' => 'updated_at', 'data' => 'updated_at']
         ];
     }
 
