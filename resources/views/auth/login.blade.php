@@ -45,7 +45,7 @@
             {!! csrf_field() !!}
 
             <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="email" class="form-control f-login" name="email" value="{{ old('email') }}" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -55,7 +55,7 @@
             </div>
 
             <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input id="pass" type="password" class="form-control f-login" placeholder="Password" name="password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 @if ($errors->has('password'))
                     <span class="help-block">
@@ -66,9 +66,9 @@
             </div>
             <div class="row">
                 <div class="col-xs-8">
-                    <div class="checkbox icheck">
+                    <div class="checkbox iCheck">
                         <label>
-                            <input type="checkbox" name="remember"> Remember Me
+                            <input id="remember" type="checkbox" name="remember" style="border: solid;">
                         </label>
                     </div>
                 </div>
@@ -101,6 +101,11 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+    });
+
+    $(document).ready(function(){
+      document.getElementById("pass").value = "";
+      $("#remember").prop('checked',true);
     });
 </script>
 </body>

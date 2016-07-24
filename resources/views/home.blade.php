@@ -7,4 +7,4 @@
 
     </div>
 </div>
-@endsection
+@stop
