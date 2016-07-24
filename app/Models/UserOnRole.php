@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="GroupRole",
+ *      definition="UserOnRole",
  *      required={},
  *      @SWG\Property(
  *          property="id",
@@ -16,42 +16,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nama",
- *          description="nama",
+ *          property="by_user",
+ *          description="by_user",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="hak_akses",
- *          description="hak_akses",
+ *          property="by_role",
+ *          description="by_role",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="created_at",
- *          description="created_at",
- *          type="string",
- *          format="date-time"
- *      ),
- *      @SWG\Property(
- *          property="updated_at",
- *          description="updated_at",
- *          type="string",
- *          format="date-time"
+ *          property="deleted_at",
+ *          description="deleted_at",
+ *          type="string"
  *      )
  * )
  */
-class GroupRole extends Model
+class UserOnRole extends Model
 {
     use SoftDeletes;
 
-    public $table = 'group_roles';
-    
+    public $table = 'user_on_role';
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nama',
-        'hak_akses'
+        'by_user',
+        'by_role',
+        'deleted_at'
     ];
 
     /**
@@ -60,8 +57,10 @@ class GroupRole extends Model
      * @var array
      */
     protected $casts = [
-        'nama' => 'string',
-        'hak_akses' => 'string'
+        'id' => 'integer',
+        'by_user' => 'array',
+        'by_role' => 'array',
+        'deleted_at' => 'string'
     ];
 
     /**
@@ -70,6 +69,6 @@ class GroupRole extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 }
