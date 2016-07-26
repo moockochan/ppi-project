@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
-
+    <link rel="stylesheet" href="{{ asset('/vendor/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/style.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
@@ -155,12 +156,57 @@
     <!-- Datatables -->
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
-
+    <script src="{{ asset('/vendor/jquery-ui.js') }}"></script>
     @yield('scripts')
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script language="javascript">
       $(document).ready(function(){
+        $.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	      });
         $(".select2").select2();
+        $(".myTgl").datepicker();
       });
+      $("#add_row_antibiotik").click(function() {
+        $("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2"]) !!}</td>'+
+                                    '<td>{!! Form::text("tgl_awal[]",null,["class"=>"form-control myTgl"]) !!}</td>'+
+                                    '<td>{!! Form::text("tgl_akhir[]",null,["class"=>"form-control myTgl"]) !!}</td>'+
+                                    '<td>{!! Form::text("dosis[]",null,["class"=>"form-control"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_po_iv_im[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_pengobatan[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_profilaksis[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control"]) !!}</td>'+
+                                    '</tr>'
+        );
+        $(".select2").select2();
+        $(".myTgl").datepicker();
+      });
+      $("#show_add_observasi").click(function(){
+        //$("#testappend").append('tessting');
+        $("#hasiPencarianPasien").html("");
+      });
+      //control buttons
+      $("#cariPasienBedah").click(function(){
+        //alert();
+        cari_pasien_bedah($("#cari_nama").val(),$("#cari_id_pasien").val(),$("#cari_id_registrasi").val(),$("#cari_tgl_registrasi").val());
+      });
+
+      $("#hasiPencarianPasien").on('click','.data_pasien_add',function(){
+        $("#add_observasi").modal('hide');
+      });
+      // cari pasien bedah
+      function cari_pasien_bedah(nm_pasien,id_pasien,id_registrasi,tgl_daftar){
+        $.ajax({
+          type: 'POST',
+          url: '/ilori/cari-pasien-bedah',
+          data: {nm_pasien,id_pasien,id_registrasi,tgl_daftar}
+        }).done(function(msg) {
+          console.log(msg);
+          $("#hasiPencarianPasien").html(msg);
+        });
+      }
     </script>
+
 </body>
 </html>

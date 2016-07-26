@@ -9,3 +9,7 @@
 <li class="{{ Request::is('userOnRoles*') ? 'active' : '' }}">
     <a href="{!! route('userOnRoles.index') !!}"><i class="fa fa-edit"></i><span>UserOnRoles</span></a>
 </li>
+<li class="{{ Request::is('pemantauanIloRis*') ? 'active' : '' }}">
+    <a href="{!! route('pemantauanIloRis.index') !!}"><i class="fa fa-edit"></i><span>PemantauanIloRis</span></a>
+</li>
+

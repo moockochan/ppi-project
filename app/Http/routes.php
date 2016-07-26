@@ -38,3 +38,6 @@ Route::resource('users', 'UserController');
 Route::resource('roles', 'RoleController');
 
 Route::resource('userOnRoles', 'UserOnRoleController');
+
+Route::resource('pemantauanIloRis', 'PemantauanIloRiController');
+Route::post('ilori/cari-pasien-bedah','PemantauanIloRiController@cariPasienBedah');
