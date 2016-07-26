@@ -41,3 +41,4 @@ Route::resource('userOnRoles', 'UserOnRoleController');
 
 Route::resource('pemantauanIloRis', 'PemantauanIloRiController');
 Route::post('ilori/cari-pasien-bedah','PemantauanIloRiController@cariPasienBedah');
+Route::post('ilori/add-observe','PemantauanIloRiController@addIloRiObserve');

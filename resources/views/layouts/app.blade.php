@@ -193,6 +193,15 @@
       });
 
       $("#hasiPencarianPasien").on('click','.data_pasien_add',function(){
+        $.ajax({
+          type: "POST",
+          url: "/ilori/add-observe",
+          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
+        }).done(function(msg){
+          console.log(msg);
+          alert(msg[0].pesan);
+          location.reload();
+        });
         $("#add_observasi").modal('hide');
       });
       // cari pasien bedah

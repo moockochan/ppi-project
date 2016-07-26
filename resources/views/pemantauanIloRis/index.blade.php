@@ -57,7 +57,7 @@
               <button type="button" id="show_add_observasi" data-toggle="modal" data-target="#add_observasi">
                 Input Pasien
               </button>
-                    <?php //@include('pemantauanIloRis.table') ?>
+                     @include('pemantauanIloRis.table')
             </div>
         </div>
     </div>

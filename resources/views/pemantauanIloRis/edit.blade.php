@@ -12,9 +12,9 @@
            <div class="box-body">
                <div class="row">
                    {!! Form::model($pemantauanIloRi, ['route' => ['pemantauanIloRis.update', $pemantauanIloRi->id], 'method' => 'patch']) !!}
-
+                        
                         @include('pemantauanIloRis.fields')
-
+<?php print $pemantauanIloRi->id; ?>
                    {!! Form::close() !!}
                </div>
            </div>

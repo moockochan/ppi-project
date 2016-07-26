@@ -55,6 +55,9 @@ class PemantauanIloRiController extends AppBaseController
      */
     public function store(CreatePemantauanIloRiRequest $request)
     {
+        $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
+        $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
+        $request['vuser'] = 'marcell';
         $input = $request->all();
 
         $pemantauanIloRi = $this->pemantauanIloRiRepository->create($input);
@@ -121,7 +124,8 @@ class PemantauanIloRiController extends AppBaseController
 
             return redirect(route('pemantauanIloRis.index'));
         }
-
+        $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
+        $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $pemantauanIloRi = $this->pemantauanIloRiRepository->update($request->all(), $id);
 
         Flash::success('PemantauanIloRi updated successfully.');
@@ -166,5 +170,11 @@ class PemantauanIloRiController extends AppBaseController
     	$data = new \Illuminate\Pagination\LengthAwarePaginator($itemsForCurrentPage, count($data), $paginate, $page);
     	$data->setPath('/pemantauanIloRis');
     	return view::make('pemantauanIloRis.data_pasien_bedah')->with('data',$data);
+    }
+
+    public function addIloRiObserve(Request $request){
+      $data = DB::select("exec spm_PPI_tb_ppi_ilo_ri_add @no_transaksi='".$request['no_transaksi']."',@id_registrasi='".$request['id_registrasi']."',@tgl_transaksi='".date("Y-m-d")."'");
+      return $data;
+      //return redirect(route('pemantauanIloRis.index'))->with('data',$data);
     }
 }

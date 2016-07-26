@@ -5,6 +5,8 @@ namespace App\DataTables;
 use App\Models\PemantauanIloRi;
 use Form;
 use Yajra\Datatables\Services\DataTable;
+use DB;
+use Yajra\Datatables\Datatables;
 
 class PemantauanIloRiDataTable extends DataTable
 {
@@ -28,8 +30,9 @@ class PemantauanIloRiDataTable extends DataTable
     public function query()
     {
         $pemantauanIloRis = PemantauanIloRi::query();
-
+        //$pemantauanIloRis = DB::table('tb_ppi_ilo_ri');
         return $this->applyScopes($pemantauanIloRis);
+        //return Datatables::of($pemantauanIloRis)->make(true);
     }
 
     /**
@@ -85,7 +88,7 @@ class PemantauanIloRiDataTable extends DataTable
             //'is_fistula' => ['name' => 'is_fistula', 'data' => 'is_fistula'],
             //'is_ilo' => ['name' => 'is_ilo', 'data' => 'is_ilo'],
             //'keterangan' => ['name' => 'keterangan', 'data' => 'keterangan'],
-            'created_at' => ['name' => 'created_at', 'data' => 'created_at'],
+            //'created_at' => ['name' => 'created_at', 'data' => 'created_at'],
             //'updated_at' => ['name' => 'updated_at', 'data' => 'updated_at'],
             //'deleted_at' => ['name' => 'deleted_at', 'data' => 'deleted_at'],
             'vuser' => ['name' => 'vuser', 'data' => 'vuser']
