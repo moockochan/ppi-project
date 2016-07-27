@@ -13,7 +13,7 @@
             <div class="box-body">
                 <div class="row">
                     {!! Form::open(['route' => 'pemantauanIloRis.store']) !!}
-
+                      
                         @include('pemantauanIloRis.fields')
 
                     {!! Form::close() !!}

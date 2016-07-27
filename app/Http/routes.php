@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('login', 'Auth\AuthController@getLogin');
@@ -42,3 +42,4 @@ Route::resource('userOnRoles', 'UserOnRoleController');
 Route::resource('pemantauanIloRis', 'PemantauanIloRiController');
 Route::post('ilori/cari-pasien-bedah','PemantauanIloRiController@cariPasienBedah');
 Route::post('ilori/add-observe','PemantauanIloRiController@addIloRiObserve');
+Route::post('ilori/cari-data-observe','PemantauanIloRiController@cariDataObserve');

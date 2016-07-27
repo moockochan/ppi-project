@@ -123,10 +123,10 @@
         <div class="tab-pane active" id="tab_1">
           <div class="row">
             <div class="col-md-6">
-            {!! Form::hidden('no_transaksi', null, ['class' => 'form-control','id'=>'no_transaksi']) !!}
+            {!! Form::hidden('no_transaksi',null, ['class' => 'form-control','id'=>'no_transaksi']) !!}
             <div class="form-group col-sm-12">
                 {!! Form::label('id_pasien', 'No Rekam Medis:') !!}
-                {!! Form::text('id_pasien', null, ['class' => 'form-control','id'=>'id_pasien']) !!}
+                {!! Form::text('id_pasien',isset($dt) ? $dt->id_pasien : null, ['class' => 'form-control','id'=>'id_pasien']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('id_registrasi', 'No Pendaftaran:') !!}
@@ -134,19 +134,15 @@
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('tgl_lahir', 'Tanggal Lahir:') !!}
-                {!! Form::text('tgl_lahir', null, ['class' => 'form-control','id'=>'tgl_lahir']) !!}
+                {!! Form::text('tgl_lahir',isset($dt) ? $dt->tgl_lhr : null, ['class' => 'form-control','id'=>'tgl_lahir']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('umur', 'Umur (Tahun):') !!}
-                {!! Form::text('umur', null, ['class' => 'form-control']) !!}
+                {!! Form::text('umur', isset($dt) ? $dt->umur : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('jns_kelamin', 'Jenis Kelamin:') !!}
-                {!! Form::text('jns_kelamin', null, ['class' => 'form-control']) !!}
-            </div>
-            <div class="form-group col-sm-12">
-                {!! Form::label('jns_kelamin', 'Jenis Kelamin:') !!}
-                {!! Form::text('jns_kelamin', null, ['class' => 'form-control']) !!}
+                {!! Form::text('jns_kelamin',isset($dt) ? $dt->jns_kelamin : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('tb', 'Tinggi Badan:') !!}
@@ -158,19 +154,19 @@
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('cara_masuk', 'Cara Masuk:') !!}
-                {!! Form::text('cara_masuk', null, ['class' => 'form-control']) !!}
+                {!! Form::text('cara_masuk',isset($dt) ? $dt->cara_masuk : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('dpjp', 'DPJP:') !!}
-                {!! Form::text('dpjp', null, ['class' => 'form-control']) !!}
+                {!! Form::text('dpjp',isset($dt) ? $dt->dpjp : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('raber', 'Raber dengan:') !!}
-                {!! Form::text('raber', null, ['class' => 'form-control']) !!}
+                {!! Form::text('raber',isset($dt) ? $dt->raber : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('dx_akhir', 'Diagnosa Akhir:') !!}
-                {!! Form::text('dx_akhir', null, ['class' => 'form-control']) !!}
+                {!! Form::text('dx_akhir',isset($dt) ? $dt->dx_akhir : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('ruang_rawat', 'Ruang Rawat:') !!}
@@ -190,47 +186,51 @@
           <div class="col-md-6">
             <div class="form-group col-sm-12">
                 {!! Form::label('faktor_resiko', 'Faktor Resiko:') !!}
-                {!! Form::text('faktor_resiko', null, ['class' => 'form-control']) !!}
+                {!! Form::text('faktor_resiko',isset($dt) ? $dt->faktor_resiko : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('operasi', 'Operasi:') !!}
-                {!! Form::text('operasi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('operasi',isset($dt) ? $dt->operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('emergensi', 'Emergensi:') !!}
-                {!! Form::text('emergensi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('emergensi',isset($dt) ? $dt->emergensi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('tgl_operasi', 'Tanggal Operasi:') !!}
-                {!! Form::text('tgl_operasi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('tgl_operasi',isset($dt) ? $dt->tgl_operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('dr_operator', 'Dokter Operator:') !!}
-                {!! Form::text('dr_operator', null, ['class' => 'form-control']) !!}
+                {!! Form::text('dr_operator',isset($dt) ? $dt->dr_operator : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('tindakan_operasi', 'Tindakan Operasi:') !!}
-                {!! Form::text('tindakan_operasi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('tindakan_operasi',isset($dt) ? $dt->tindakan_operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('jns_operasi', 'Jenis Operasi:') !!}
-                {!! Form::text('jns_operasi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('jns_operasi',isset($dt) ? $dt->jns_operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('anastesi', 'Anastesi Umum:') !!}
-                {!! Form::text('anastesi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('anastesi',isset($dt) ? $dt->anastesi : null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group col-sm-12">
+                {!! Form::label('kamar_operasi', 'Kamar Operasi:') !!}
+                {!! Form::text('kamar_operasi',isset($dt) ? $dt->kamar_operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('ronde_ke', 'Ronde Ke:') !!}
-                {!! Form::text('ronde_ke', null, ['class' => 'form-control']) !!}
+                {!! Form::text('ronde_ke',isset($dt) ? $dt->ronde_ke : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('lama_operasi', 'Lama Operasi:') !!}
-                {!! Form::text('lama_operasi', null, ['class' => 'form-control']) !!}
+                {!! Form::text('lama_operasi',isset($dt) ? $dt->lama_operasi : null, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('asa_score', 'ASA Score:') !!}
-                {!! Form::text('asa_score', null, ['class' => 'form-control']) !!}
+                {!! Form::text('asa_score',isset($dt) ? $dt->asa_score : null, ['class' => 'form-control']) !!}
             </div>
           </div><!-- end col 2 -->
           </div>

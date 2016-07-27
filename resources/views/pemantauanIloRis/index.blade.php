@@ -2,10 +2,10 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">PemantauanIloRis</h1>
-        <h1 class="pull-right">
+        <h1 class="pull-left">DATA PEMANTAUAN ILO</h1>
+        <!--<h1 class="pull-right">
            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('pemantauanIloRis.create') !!}">Add New</a>
-        </h1>
+        </h1>-->
     </section>
 
     <!-- Modal -->
@@ -54,10 +54,33 @@
         <div class="box box-primary">
             <div class="box-body">
               <!-- Button trigger modal -->
-              <button type="button" id="show_add_observasi" data-toggle="modal" data-target="#add_observasi">
+              <button type="button" id="show_add_observasi" class="btn btn-default" data-toggle="modal" data-target="#add_observasi">
                 Input Pasien
               </button>
+              <div class="box box-success">
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-sm-2">
+                      {!! Form::text('ilori_cari_id_pasien',null,['id'=>'ilori_cari_id_pasien','class'=>'form-control','placeholder'=>'No. RM']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                      {!! Form::text('ilori_cari_id_registrasi',null,['id'=>'ilori_cari_id_registrasi','class'=>'form-control','placeholder'=>'No Pendaftaran']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                      {!! Form::text('ilori_cari_tgl_registrasi',null,['id'=>'ilori_cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Masuk RS']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                      {!! Form::text('ilori_cari_tgl_obs',null,['id'=>'ilori_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
+                    </div>
+                    <div class="col-sm-2">
+                      <input type="button" class="btn btn-default" value="Cari" id="cariDataIloRi">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="tbDataIloRI">
                      @include('pemantauanIloRis.table')
+              </div>
             </div>
         </div>
     </div>

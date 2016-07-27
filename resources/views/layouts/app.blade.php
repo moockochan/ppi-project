@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="{{ asset('/vendor/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/simplePagination.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/style.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -157,6 +158,7 @@
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
     <script src="{{ asset('/vendor/jquery-ui.js') }}"></script>
+
     @yield('scripts')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script language="javascript">
@@ -168,6 +170,7 @@
 	      });
         $(".select2").select2();
         $(".myTgl").datepicker();
+      
       });
       $("#add_row_antibiotik").click(function() {
         $("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2"]) !!}</td>'+
@@ -203,6 +206,22 @@
           location.reload();
         });
         $("#add_observasi").modal('hide');
+      });
+
+
+      $("#cariDataIloRi").click(function(){
+
+        $.ajax({
+          type: 'POST',
+          url: '/ilori/cari-data-observe',
+          data: {id_pasien: $("#ilori_cari_id_pasien").val(),id_registrasi: $("#ilori_cari_id_registrasi").val(),tgl_registrasi: $("#ilori_cari_tgl_registrasi").val(),tgl_transaksi: $("#ilori_cari_tgl_obs").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#tbDataIloRI").html(msg);
+          table = $("#tb-ilo-ri-observe").DataTable();
+          table.draw();
+        });
+
       });
       // cari pasien bedah
       function cari_pasien_bedah(nm_pasien,id_pasien,id_registrasi,tgl_daftar){

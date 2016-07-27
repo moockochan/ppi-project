@@ -33,7 +33,8 @@ class PemantauanIloRiController extends AppBaseController
      */
     public function index(PemantauanIloRiDataTable $pemantauanIloRiDataTable)
     {
-        return $pemantauanIloRiDataTable->render('pemantauanIloRis.index');
+        $data = DB::select("exec spm_PPI_ILO_RI_List @id='',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
+        return $pemantauanIloRiDataTable->render('pemantauanIloRis.index')->with('tbindex',$data);
     }
 
     /**
@@ -97,14 +98,15 @@ class PemantauanIloRiController extends AppBaseController
     public function edit($id)
     {
         $pemantauanIloRi = $this->pemantauanIloRiRepository->findWithoutFail($id);
-
+        $data = DB::select("exec spm_PPI_ILO_RI_List @id='".$id."',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
+        //dd($pemantauanIloRi);
         if (empty($pemantauanIloRi)) {
             Flash::error('PemantauanIloRi not found');
 
             return redirect(route('pemantauanIloRis.index'));
         }
 
-        return view('pemantauanIloRis.edit')->with('pemantauanIloRi', $pemantauanIloRi);
+        return view('pemantauanIloRis.edit')->with('pemantauanIloRi', $pemantauanIloRi)->with('data',$data);
     }
 
     /**
@@ -126,6 +128,7 @@ class PemantauanIloRiController extends AppBaseController
         }
         $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
         $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
+        $request['tgl_transaksi'] = date("Y-m-d");
         $pemantauanIloRi = $this->pemantauanIloRiRepository->update($request->all(), $id);
 
         Flash::success('PemantauanIloRi updated successfully.');
@@ -152,7 +155,7 @@ class PemantauanIloRiController extends AppBaseController
 
         $this->pemantauanIloRiRepository->delete($id);
 
-        Flash::success('PemantauanIloRi deleted successfully.');
+        Flash::success('Data Berhasi Dihapus.');
 
         return redirect(route('pemantauanIloRis.index'));
     }
@@ -163,7 +166,7 @@ class PemantauanIloRiController extends AppBaseController
     	$paginate = 50;
 
     	$data = DB::select("exec spm_PPI_ILO_RI_Pasien_Operasi_List @nm_pasien='".$request['nm_pasien']."',@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',@tgl_registrasi='".$request['tgl_daftar']."'");
-
+      //$data = DB::select("exec spm_PPI_ILO_RI_List @id=1,@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
     	$offSet = ($page * $paginate) - $paginate;
     	$itemsForCurrentPage = array_slice($data, $offSet, $paginate, true);
 
@@ -176,5 +179,17 @@ class PemantauanIloRiController extends AppBaseController
       $data = DB::select("exec spm_PPI_tb_ppi_ilo_ri_add @no_transaksi='".$request['no_transaksi']."',@id_registrasi='".$request['id_registrasi']."',@tgl_transaksi='".date("Y-m-d")."'");
       return $data;
       //return redirect(route('pemantauanIloRis.index'))->with('data',$data);
+    }
+
+    public function cariDataObserve(Request $request){
+      if($request['tgl_transaksi']<>''){
+        $request['tgl_transaksi'] = date("Y-m-d",strtotime($request['tgl_transaksi']));
+      }
+      if($request['tgl_registrasi']<>''){
+        $request['tgl_registrasi'] = date("Y-m-d",strtotime($request['tgl_registrasi']));
+      }
+      $data = DB::select("exec spm_PPI_ILO_RI_List @id='',@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',@tgl_registrasi='".$request['tgl_registrasi']."',@tgl_transaksi='".$request['tgl_transaksi']."'");
+      return view::make('pemantauanIloRis.table')->with('tbindex',$data);
+      //return "exec spm_PPI_ILO_RI_List @id='',@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',@tgl_registrasi='".$request['tgl_registrasi']."',@tgl_transaksi='".$request['tgl_transaksi']."'";
     }
 }

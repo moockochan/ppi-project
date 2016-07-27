@@ -87,7 +87,7 @@ class PemantauanIloRi extends Model
     use SoftDeletes;
 
     public $table = 'tb_ppi_ilo_ri';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -98,6 +98,9 @@ class PemantauanIloRi extends Model
     public $fillable = [
         'no_transaksi',
         'id_registrasi',
+        'tgl_transaksi',
+        'tb',
+        'bb',
         'is_kultur',
         'tgl_kultur',
         'hasil_kultur',
@@ -121,7 +124,10 @@ class PemantauanIloRi extends Model
     protected $casts = [
         'id' => 'integer',
         'no_transaksi' => 'string',
+        'tgl_transaksi' => 'datetime',
         'id_registrasi' => 'string',
+        'tb' => 'string',
+        'bb' => 'string',
         'is_kultur' => 'string',
         'tgl_kultur' => 'datetime',
         'hasil_kultur' => 'string',
@@ -143,6 +149,6 @@ class PemantauanIloRi extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 }
