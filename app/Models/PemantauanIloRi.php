@@ -98,7 +98,6 @@ class PemantauanIloRi extends Model
     public $fillable = [
         'no_transaksi',
         'id_registrasi',
-        'tgl_transaksi',
         'tb',
         'bb',
         'is_kultur',
@@ -124,7 +123,6 @@ class PemantauanIloRi extends Model
     protected $casts = [
         'id' => 'integer',
         'no_transaksi' => 'string',
-        'tgl_transaksi' => 'datetime',
         'id_registrasi' => 'string',
         'tb' => 'string',
         'bb' => 'string',

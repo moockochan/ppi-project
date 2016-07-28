@@ -43,3 +43,4 @@ Route::resource('pemantauanIloRis', 'PemantauanIloRiController');
 Route::post('ilori/cari-pasien-bedah','PemantauanIloRiController@cariPasienBedah');
 Route::post('ilori/add-observe','PemantauanIloRiController@addIloRiObserve');
 Route::post('ilori/cari-data-observe','PemantauanIloRiController@cariDataObserve');
+Route::post('ilori/add-antibiotik','PemantauanIloRiController@addIloRiAntibiotik');

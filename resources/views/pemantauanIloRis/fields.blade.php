@@ -292,7 +292,7 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <td>Nama Obat</td>
+                    <td width="30%">Nama Obat</td>
                     <td>Tgl.Awal</td>
                     <td>Tgl.Akhir</td>
                     <td>Dosis</td>
@@ -302,6 +302,19 @@
                   </tr>
                 </thead>
                 <tbody id="gridAntibiotik">
+                  @if(isset($antibiotik))
+                    @foreach($antibiotik as $atb)
+                    <tr>
+                      <td width="30%">{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),$atb->kd_obat,["class"=>"form-control select2 kd_obat","width"=>"100%"]) !!}</td>
+                      <td>{!! Form::text("tgl_awal[]",$atb->tgl_awal,["class"=>"form-control myTgl tgl_awal"]) !!}</td>
+                      <td>{!! Form::text("tgl_akhir[]",$atb->tgl_akhir,["class"=>"form-control myTgl tgl_akhir"]) !!}</td>
+                      <td>{!! Form::text("dosis[]",$atb->dosis,["class"=>"form-control dosis"]) !!}</td>
+                      <td>{!! Form::select("is_po_iv_im[]",["Ya"=>"Ya","Tidak"=>"Tidak"],$atb->is_po_iv_im,["class"=>"form-control is_po_iv_im"]) !!}</td>
+                      <td>{!! Form::select("is_pengobatan[]",["Ya"=>"Ya","Tidak"=>"Tidak"],$atb->is_pengobatan,["class"=>"form-control is_pengobatan"]) !!}</td>
+                      <td>{!! Form::select("is_profilaksis[]",["Ya"=>"Ya","Tidak"=>"Tidak"],$atb->is_profilaksis,["class"=>"form-control is_profilaksis"]) !!}</td>
+                    </tr>
+                    @endforeach
+                  @endif
                 </tbody>
               </table>
               <input type="button" class="btn btn-default" id="add_row_antibiotik" name="add_row_antibiotik" value="Tambah Antibiotik">
@@ -321,7 +334,7 @@
               </div>
               <!-- Submit Field -->
               <div class="form-group col-sm-12">
-                  {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                  {!! Form::submit('Save', ['id'=>'simpan-ilori','class' => 'btn btn-primary']) !!}
                   <a href="{!! route('pemantauanIloRis.index') !!}" class="btn btn-default">Cancel</a>
               </div>
             </div>

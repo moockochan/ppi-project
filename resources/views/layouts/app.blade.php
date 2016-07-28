@@ -170,10 +170,10 @@
 	      });
         $(".select2").select2();
         $(".myTgl").datepicker();
-      
+
       });
       $("#add_row_antibiotik").click(function() {
-        $("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2"]) !!}</td>'+
+        /*$("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2 kd_obat"]) !!}</td>'+
                                     '<td>{!! Form::text("tgl_awal[]",null,["class"=>"form-control myTgl"]) !!}</td>'+
                                     '<td>{!! Form::text("tgl_akhir[]",null,["class"=>"form-control myTgl"]) !!}</td>'+
                                     '<td>{!! Form::text("dosis[]",null,["class"=>"form-control"]) !!}</td>'+
@@ -181,7 +181,16 @@
                                     '<td>{!! Form::select("is_pengobatan[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control"]) !!}</td>'+
                                     '<td>{!! Form::select("is_profilaksis[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control"]) !!}</td>'+
                                     '</tr>'
-        );
+        );*/
+        var $selector = $('<tr><td width="30%">{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2 kd_obat"]) !!}</td>'+
+                                    '<td>{!! Form::text("tgl_awal[]",null,["class"=>"form-control myTgl tgl_awal"]) !!}</td>'+
+                                    '<td>{!! Form::text("tgl_akhir[]",null,["class"=>"form-control myTgl tgl_akhir"]) !!}</td>'+
+                                    '<td>{!! Form::text("dosis[]",null,["class"=>"form-control dosis"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_po_iv_im[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control is_po_iv_im"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_pengobatan[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control is_pengobatan"]) !!}</td>'+
+                                    '<td>{!! Form::select("is_profilaksis[]",["Ya"=>"Ya","Tidak"=>"Tidak"],null,["class"=>"form-control is_profilaksis"]) !!}</td>'+
+                                    '</tr>'
+        ).appendTo("#gridAntibiotik");
         $(".select2").select2();
         $(".myTgl").datepicker();
       });
@@ -222,6 +231,25 @@
           table.draw();
         });
 
+      });
+
+      $("#simpan-ilori").click(function(){
+        var xkd_obat= $(".kd_obat").map(function() { return $(this).val(); }).get();
+        var xtgl_awal= $(".tgl_awal").map(function() { return date("Y-m-d",strtotime($(this).val())); }).get();
+        var xtgl_akhir= $(".tgl_akhir").map(function() { return date("Y-m-d",strtotime($(this).val())); }).get();
+        var xdosis= $(".dosis").map(function() { return $(this).val(); }).get();
+        var xis_po_iv_im= $(".is_po_iv_im").map(function() { return $(this).val(); }).get();
+        var xis_pengobatan= $(".is_pengobatan").map(function() { return $(this).val(); }).get();
+        var xis_profilaksis= $(".is_profilaksis").map(function() { return $(this).val(); }).get();
+        alert(xkd_obat);
+        $.ajax({
+          type: "POST",
+          url: "/ilori/add-antibiotik",
+          data: {no_transaksi: $("#no_transaksi").val(),kd_obat:xkd_obat,tgl_awal:xtgl_awal,tgl_akhir:xtgl_akhir,dosis:xdosis,is_po_iv_im:xis_po_iv_im,is_pengobatan:xis_pengobatan,is_profilaksis:xis_profilaksis}
+        }).done(function(msg){
+          console.log(msg[0].pesan);
+          alert(msg[0].pesan);
+        });
       });
       // cari pasien bedah
       function cari_pasien_bedah(nm_pasien,id_pasien,id_registrasi,tgl_daftar){

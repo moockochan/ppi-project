@@ -33,7 +33,7 @@ class PemantauanIloRiController extends AppBaseController
      */
     public function index(PemantauanIloRiDataTable $pemantauanIloRiDataTable)
     {
-        $data = DB::select("exec spm_PPI_ILO_RI_List @id='',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
+        $data = DB::select("exec spm_PPI_ILO_RI_List @id='',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi='".date("Y-m-d")."'");
         return $pemantauanIloRiDataTable->render('pemantauanIloRis.index')->with('tbindex',$data);
     }
 
@@ -56,6 +56,7 @@ class PemantauanIloRiController extends AppBaseController
      */
     public function store(CreatePemantauanIloRiRequest $request)
     {
+        //print($request['kd_obat']);
         $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
         $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $request['vuser'] = 'marcell';
@@ -99,6 +100,7 @@ class PemantauanIloRiController extends AppBaseController
     {
         $pemantauanIloRi = $this->pemantauanIloRiRepository->findWithoutFail($id);
         $data = DB::select("exec spm_PPI_ILO_RI_List @id='".$id."',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
+        $antibiotik = DB::select("select kd_obat,convert(date,tgl_awal) as tgl_awal,convert(date,tgl_akhir) as tgl_akhir,dosis,is_po_iv_im,is_pengobatan,is_profilaksis from tb_ppi_pemakaian_antibiotik where no_transaksi=(select no_transaksi from tb_ppi_ilo_ri where id='".$id."')");
         //dd($pemantauanIloRi);
         if (empty($pemantauanIloRi)) {
             Flash::error('PemantauanIloRi not found');
@@ -106,7 +108,7 @@ class PemantauanIloRiController extends AppBaseController
             return redirect(route('pemantauanIloRis.index'));
         }
 
-        return view('pemantauanIloRis.edit')->with('pemantauanIloRi', $pemantauanIloRi)->with('data',$data);
+        return view('pemantauanIloRis.edit')->with('pemantauanIloRi', $pemantauanIloRi)->with('data',$data)->with('antibiotik',$antibiotik);
     }
 
     /**
@@ -126,14 +128,24 @@ class PemantauanIloRiController extends AppBaseController
 
             return redirect(route('pemantauanIloRis.index'));
         }
+        //dd($request['is_profilaksis']);
+        $data = DB::select("exec spm_PPI_ILO_RI_Antibiotik_Add @no_transaksi='".$request['no_transaksi']."',@kd_obat='".implode(",",$request['kd_obat'])."',".
+                           "@tgl_awal='".implode(",",$request['tgl_awal'])."',@tgl_akhir='".implode(",",$request['tgl_akhir'])."',".
+                           "@dosis='".implode(",",$request['dosis'])."',@is_po_iv_im='".implode(",",$request['is_po_iv_im'])."',@is_pengobatan='".implode(",",$request['is_pengobatan'])."',".
+                           "@is_profilaksis='".implode(",",$request['is_profilaksis'])."'");
+
         $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
         $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $request['tgl_transaksi'] = date("Y-m-d");
         $pemantauanIloRi = $this->pemantauanIloRiRepository->update($request->all(), $id);
 
-        Flash::success('PemantauanIloRi updated successfully.');
+        Flash::success('Data Berhasil Diupdate.');
 
         return redirect(route('pemantauanIloRis.index'));
+        /*return ("exec spm_PPI_ILO_RI_Antibiotik_Add @no_transaksi='".$request['no_transaksi']."',@kd_obat='".implode(",",$request['kd_obat'])."',".
+                           "@tgl_awal='".implode(",",$request['tgl_awal'])."',@tgl_akhir='".implode(",",$request['tgl_akhir'])."',".
+                           "@dosis='".implode(",",$request['dosis'])."',@is_po_iv_im='".implode(",",$request['is_po_iv_im'])."',@is_pengobatan='".implode(",",$request['is_pengobatan'])."',".
+                           "@is_profilaksis='".implode(",",$request['is_profilaksis'])."'");*/
     }
 
     /**
@@ -179,6 +191,14 @@ class PemantauanIloRiController extends AppBaseController
       $data = DB::select("exec spm_PPI_tb_ppi_ilo_ri_add @no_transaksi='".$request['no_transaksi']."',@id_registrasi='".$request['id_registrasi']."',@tgl_transaksi='".date("Y-m-d")."'");
       return $data;
       //return redirect(route('pemantauanIloRis.index'))->with('data',$data);
+    }
+
+    public function addIloRiAntibiotik(Request $request)
+    {
+      # code...
+      //$data = DB::select("exec spm_PPI_ILO_RI_Antibiotik_Add @no_transaksi='".$request['no_transaksi']."',@kd_obat='".$request['kd_obat']."',@tgl_awal='".date("Y-m-d",strtotime($request['tgl_awal']))."',".
+      //                   "@tgl_akhir='".date("Y-m-d",strtotime($request['tgl_akhir']))."',@dosis='".$request['dosis']."',@is_po_iv_im='".$request['is_po_iv_im']."',@is_pengobatan='".$request['is_pengobatan']."',@is_profilaksis='".$request['is_profilaksis']."'");
+      //return $data;
     }
 
     public function cariDataObserve(Request $request){
