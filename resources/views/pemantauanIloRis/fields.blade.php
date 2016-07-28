@@ -146,11 +146,11 @@
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('tb', 'Tinggi Badan:') !!}
-                {!! Form::text('tb', null, ['class' => 'form-control']) !!}
+                {!! Form::text('tb', 0, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('bb', 'Berat Badan:') !!}
-                {!! Form::text('bb', null, ['class' => 'form-control']) !!}
+                {!! Form::text('bb', 0, ['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('cara_masuk', 'Cara Masuk:') !!}
@@ -305,7 +305,7 @@
                   @if(isset($antibiotik))
                     @foreach($antibiotik as $atb)
                     <tr>
-                      <td width="30%">{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),$atb->kd_obat,["class"=>"form-control select2 kd_obat","width"=>"100%"]) !!}</td>
+                      <td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),$atb->kd_obat,["class"=>"form-control select2 kd_obat","style"=>"width: 100%;"]) !!}</td>
                       <td>{!! Form::text("tgl_awal[]",$atb->tgl_awal,["class"=>"form-control myTgl tgl_awal"]) !!}</td>
                       <td>{!! Form::text("tgl_akhir[]",$atb->tgl_akhir,["class"=>"form-control myTgl tgl_akhir"]) !!}</td>
                       <td>{!! Form::text("dosis[]",$atb->dosis,["class"=>"form-control dosis"]) !!}</td>

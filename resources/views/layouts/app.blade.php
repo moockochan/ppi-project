@@ -233,7 +233,7 @@
 
       });
 
-      $("#simpan-ilori").click(function(){
+      /*$("#simpan-ilori").click(function(){
         var xkd_obat= $(".kd_obat").map(function() { return $(this).val(); }).get();
         var xtgl_awal= $(".tgl_awal").map(function() { return date("Y-m-d",strtotime($(this).val())); }).get();
         var xtgl_akhir= $(".tgl_akhir").map(function() { return date("Y-m-d",strtotime($(this).val())); }).get();
@@ -250,7 +250,7 @@
           console.log(msg[0].pesan);
           alert(msg[0].pesan);
         });
-      });
+      });*/
       // cari pasien bedah
       function cari_pasien_bedah(nm_pasien,id_pasien,id_registrasi,tgl_daftar){
         $.ajax({

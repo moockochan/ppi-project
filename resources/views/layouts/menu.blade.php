@@ -12,3 +12,6 @@
 <li class="{{ Request::is('pemantauanIloRis*') ? 'active' : '' }}">
     <a href="{!! route('pemantauanIloRis.index') !!}"><i class="fa fa-edit"></i><span>PEMANTAUAN ILO</span></a>
 </li>
+<li class="{{ Request::is('pemantauanIloRjs*') ? 'active' : '' }}">
+    <a href="{!! route('pemantauanIloRjs.index') !!}"><i class="fa fa-edit"></i><span>PEMANTAUAN ILO RJ</span></a>
+</li>
