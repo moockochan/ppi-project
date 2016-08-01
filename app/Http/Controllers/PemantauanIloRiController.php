@@ -123,6 +123,11 @@ class PemantauanIloRiController extends AppBaseController
     {
         $pemantauanIloRi = $this->pemantauanIloRiRepository->findWithoutFail($id);
 
+        if ($request['tgl_pemantauan']==''){
+            Flash::error('Tanggal Pemantauan Harus Diisi');
+
+            return redirect(route('pemantauanIloRis.index'));
+        }
         if (empty($pemantauanIloRi)) {
             Flash::error('PemantauanIloRi not found');
 
