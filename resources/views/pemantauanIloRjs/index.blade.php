@@ -28,9 +28,11 @@
                 {!! Form::text('cari_tgl_registrasi',null,['id'=>'cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Daftar']) !!}
               </div>
               <div class="col-sm-2">
-                <input type="button" class="btn btn-default" value="Cari" id="ilorj-cariPasienBedah">
+                <input type="button" class="btn btn-default" value="Cari" id="ilorj_cari_pasien_bedah">
+
               </div>
             </div>
+
             <div id="hasiPencarianPasien">
               @include('pemantauanIloRjs.data_pasien_bedah')
             </div>

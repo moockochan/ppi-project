@@ -17,14 +17,15 @@ class CreatePemantauanIloRjTable extends Migration
             $table->string('no_transaksi');
             $table->datetime('tgl_transaksi');
             $table->string('id_registrasi');
+            $table->string('by_id_registrasi_ilori');
             $table->decimal('tb',10,2)->nullable();
             $table->decimal('bb',10,2)->nullable();
             $table->datetime('tgl_pemantauan')->nullable();
             $table->string('kd_pemeriksa')->nullable();
             $table->enum('is_suhu_more_38',['Ya','Tidak'])->nullable();
             $table->enum('is_tanda_peradangan',['Ya','Tidak'])->nullable();
-            $table->enum('is_pus',['Ya','Tidak']);
-            $table->enum('is_perforasi',['Ya','Tidak']);
+            $table->enum('is_pus',['Ya','Tidak'])->nullable();
+            $table->enum('is_perforasi',['Ya','Tidak'])->nullable();
             $table->string('antibiotik')->nullable();
             $table->timestamps();
             $table->string('deleted_at')->nullable();

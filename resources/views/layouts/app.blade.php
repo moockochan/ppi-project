@@ -170,7 +170,7 @@
 	      });
         $(".select2").select2();
         $(".myTgl").datepicker();
-
+        $("#tbPasienBedah").DataTable();
       });
       $("#add_row_antibiotik").click(function() {
         /*$("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2 kd_obat"]) !!}</td>'+
@@ -202,6 +202,17 @@
       $("#cariPasienBedah").click(function(){
         //alert();
         cari_pasien_bedah($("#cari_nama").val(),$("#cari_id_pasien").val(),$("#cari_id_registrasi").val(),$("#cari_tgl_registrasi").val());
+      });
+
+      $("#ilorj_cari_pasien_bedah").click(function(){
+        $.ajax({
+          type: "POST",
+          url: "/ilorj/cari-pasien-bedah",
+          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#hasiPencarianPasien").html(msg);
+        });
       });
 
       $("#hasiPencarianPasien").on('click','.data_pasien_add',function(){
@@ -262,6 +273,35 @@
           $("#hasiPencarianPasien").html(msg);
         });
       }
+
+      //ILO RJ
+      $("#hasiPencarianPasien").on('click','.ilorj_data_pasien_add',function(){
+        $.ajax({
+          type: "POST",
+          url: "/ilorj/add-observe",
+          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
+        }).done(function(msg){
+          console.log(msg);
+          alert(msg[0].pesan);
+          location.reload();
+        });
+        $("#add_observasi").modal('hide');
+      });
+
+      $("#cariDataIloRj").click(function(){
+
+        $.ajax({
+          type: 'POST',
+          url: '/ilorj/cari-data-observe',
+          data: {id_pasien: $("#ilorj_cari_id_pasien").val(),id_registrasi: $("#ilorj_cari_id_registrasi").val(),tgl_registrasi: $("#ilorj_cari_tgl_registrasi").val(),tgl_transaksi: $("#ilorj_cari_tgl_obs").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#tbDataIloRJ").html(msg);
+          table = $("#tb-ilo-rj-observe").DataTable();
+          table.draw();
+        });
+
+      });
     </script>
 
 </body>

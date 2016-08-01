@@ -12,9 +12,9 @@
            <div class="box-body">
                <div class="row">
                    {!! Form::model($pemantauanIloRj, ['route' => ['pemantauanIloRjs.update', $pemantauanIloRj->id], 'method' => 'patch']) !!}
-
+                      @foreach($data as $dt)
                         @include('pemantauanIloRjs.fields')
-
+                      @endforeach
                    {!! Form::close() !!}
                </div>
            </div>

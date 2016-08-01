@@ -47,3 +47,6 @@ Route::post('ilori/add-antibiotik','PemantauanIloRiController@addIloRiAntibiotik
 
 
 Route::resource('pemantauanIloRjs', 'PemantauanIloRjController');
+Route::post('ilorj/cari-pasien-bedah','PemantauanIloRjController@cariPasienBedah');
+Route::post('ilorj/add-observe','PemantauanIloRjController@addIloRjObserve');
+Route::post('ilorj/cari-data-observe','PemantauanIloRjController@cariDataObserve');

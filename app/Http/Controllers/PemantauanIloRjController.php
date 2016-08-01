@@ -10,6 +10,10 @@ use App\Repositories\PemantauanIloRjRepository;
 use Flash;
 use InfyOm\Generator\Controller\AppBaseController;
 use Response;
+use Illuminate\Support\Facades\Input;
+use DB;
+use View;
+use Illuminate\Http\Request;
 
 class PemantauanIloRjController extends AppBaseController
 {
@@ -29,7 +33,8 @@ class PemantauanIloRjController extends AppBaseController
      */
     public function index(PemantauanIloRjDataTable $pemantauanIloRjDataTable)
     {
-        return $pemantauanIloRjDataTable->render('pemantauanIloRjs.index');
+        $data = DB::select("exec spm_PPI_ILO_RJ_List @id='',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi='".date("Y-m-d")."'");
+        return $pemantauanIloRjDataTable->render('pemantauanIloRjs.index')->with('tbindex',$data);
     }
 
     /**
@@ -90,14 +95,14 @@ class PemantauanIloRjController extends AppBaseController
     public function edit($id)
     {
         $pemantauanIloRj = $this->pemantauanIloRjRepository->findWithoutFail($id);
-
+        $data = DB::select("exec spm_PPI_ILO_RJ_List @id='".$id."',@id_pasien='',@id_registrasi='',@tgl_registrasi='',@tgl_transaksi=''");
         if (empty($pemantauanIloRj)) {
             Flash::error('PemantauanIloRj not found');
 
             return redirect(route('pemantauanIloRjs.index'));
         }
 
-        return view('pemantauanIloRjs.edit')->with('pemantauanIloRj', $pemantauanIloRj);
+        return view('pemantauanIloRjs.edit')->with('pemantauanIloRj', $pemantauanIloRj)->with('data',$data);
     }
 
     /**
@@ -117,7 +122,7 @@ class PemantauanIloRjController extends AppBaseController
 
             return redirect(route('pemantauanIloRjs.index'));
         }
-
+        $request['tgl_pemantauan']=date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $pemantauanIloRj = $this->pemantauanIloRjRepository->update($request->all(), $id);
 
         Flash::success('PemantauanIloRj updated successfully.');
@@ -147,5 +152,36 @@ class PemantauanIloRjController extends AppBaseController
         Flash::success('PemantauanIloRj deleted successfully.');
 
         return redirect(route('pemantauanIloRjs.index'));
+    }
+
+    public function cariPasienBedah(Request $request){
+      if($request['tgl_registrasi'] != ''){
+        $request['tgl_registrasi'] = date("Y-m-d",strtotime($request['tgl_registrasi']));
+      }
+      $data = DB::select("exec spm_PPI_ILO_RJ_Pasien_Operasi_List @nm_pasien='".$request['nm_pasien']."',".
+                         "@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',".
+                         "@tgl_registrasi='".$request['tgl_registrasi']."'");
+      return view('pemantauanIloRjs.data_pasien_bedah')->with('data',$data);
+      /*return ("exec spm_PPI_ILO_RJ_Pasien_Operasi_List @nm_pasien='".$request['nm_pasien']."',".
+                         "@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',".
+                         "@tgl_registrasi='".$request['tgl_registrasi']."'");*/
+    }
+
+    public function addIloRjObserve(Request $request){
+      $data = DB::select("exec spm_PPI_tb_ppi_ilo_rj_add @no_transaksi='".$request['no_transaksi']."',@id_registrasi='".$request['id_registrasi']."',@tgl_transaksi='".date("Y-m-d")."'");
+      return $data;
+      //return ("exec spm_PPI_tb_ppi_ilo_rj_add @no_transaksi='".$request['no_transaksi']."',@id_registrasi='".$request['id_registrasi']."',@tgl_transaksi='".date("Y-m-d")."'");
+    }
+
+    public function cariDataObserve(Request $request){
+      if($request['tgl_transaksi']<>''){
+        $request['tgl_transaksi'] = date("Y-m-d",strtotime($request['tgl_transaksi']));
+      }
+      if($request['tgl_registrasi']<>''){
+        $request['tgl_registrasi'] = date("Y-m-d",strtotime($request['tgl_registrasi']));
+      }
+      $data = DB::select("exec spm_PPI_ILO_RJ_List @id='',@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',@tgl_registrasi='".$request['tgl_registrasi']."',@tgl_transaksi='".$request['tgl_transaksi']."'");
+      return view::make('pemantauanIloRjs.table')->with('tbindex',$data);
+      //return ("exec spm_PPI_ILO_RJ_List @id='',@id_pasien='".$request['id_pasien']."',@id_registrasi='".$request['id_registrasi']."',@tgl_registrasi='".$request['tgl_registrasi']."',@tgl_transaksi='".$request['tgl_transaksi']."'");
     }
 }

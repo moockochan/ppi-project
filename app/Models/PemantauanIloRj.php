@@ -17,7 +17,7 @@ class PemantauanIloRj extends Model
     use SoftDeletes;
 
     public $table = 'tb_ppi_ilo_rj';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -26,7 +26,19 @@ class PemantauanIloRj extends Model
 
 
     public $fillable = [
-        
+        'no_transaksi',
+        'id_registrasi',
+        'tb',
+        'bb',
+        'tgl_pemantauan',
+        'kd_pemeriksa',
+        'is_suhu_more_38',
+        'is_tanda_peradangan',
+        'is_pus',
+        'is_perforasi',
+        'antibiotik',
+        'deleted_at',
+        'vuser'
     ];
 
     /**
@@ -35,7 +47,20 @@ class PemantauanIloRj extends Model
      * @var array
      */
     protected $casts = [
-        
+      'id' => 'integer',
+      'no_transaksi' => 'string',
+      'id_registrasi' => 'string',
+      'tb' => 'integer',
+      'bb' => 'integer',
+      'tgl_pemantauan' => 'datetime',
+      'kd_pemeriksa' => 'integer',
+      'is_suhu_more_38' => 'string',
+      'is_tanda_peradangan' => 'string',
+      'is_pus' => 'string',
+      'is_perforasi' => 'string',
+      'antibiotik' => 'array',
+      'deleted_at' => 'string',
+      'vuser' => 'string'
     ];
 
     /**
@@ -44,6 +69,6 @@ class PemantauanIloRj extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 }
