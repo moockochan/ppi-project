@@ -50,3 +50,33 @@ Route::resource('pemantauanIloRjs', 'PemantauanIloRjController');
 Route::post('ilorj/cari-pasien-bedah','PemantauanIloRjController@cariPasienBedah');
 Route::post('ilorj/add-observe','PemantauanIloRjController@addIloRjObserve');
 Route::post('ilorj/cari-data-observe','PemantauanIloRjController@cariDataObserve');
+
+
+Route::resource('pemantauanVentilators', 'PemantauanVentilatorController');
+Route::post('ventilator/cari-pasien','PemantauanVentilatorController@cariPasien');
+Route::post('ventilator/add-observe','PemantauanVentilatorController@addVentilatorObserve');
+Route::post('ventilator/cari-data-observe','PemantauanVentilatorController@cariDataObserve');
+
+
+Route::resource('pemantauanIsks', 'PemantauanIskController');
+Route::post('isk/cari-pasien','PemantauanIskController@cariPasien');
+Route::post('isk/add-observe','PemantauanIskController@addIskObserve');
+Route::post('isk/cari-data-observe','PemantauanIskController@cariDataObserve');
+
+
+Route::resource('pemantauanIadpPhlebitis', 'PemantauanIadpPhlebitisController');
+Route::post('phlebitis/cari-pasien','PemantauanIadpPhlebitisController@cariPasien');
+Route::post('phlebitis/add-observe','PemantauanIadpPhlebitisController@addObserve');
+Route::post('phlebitis/cari-data-observe','PemantauanIadpPhlebitisController@cariDataObserve');
+
+
+Route::resource('pemantauanHaps', 'PemantauanHapController');
+Route::post('hap/cari-pasien','PemantauanHapController@cariPasien');
+Route::post('hap/add-observe','PemantauanHapController@addObserve');
+Route::post('hap/cari-data-observe','PemantauanHapController@cariDataObserve');
+
+
+Route::resource('pemantauanDecubituses', 'PemantauanDecubitusController');
+Route::post('decubitus/cari-pasien','PemantauanDecubitusController@cariPasien');
+Route::post('decubitus/add-observe','PemantauanDecubitusController@addObserve');
+Route::post('decubitus/cari-data-observe','PemantauanDecubitusController@cariDataObserve');

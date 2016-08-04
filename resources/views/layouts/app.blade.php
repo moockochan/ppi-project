@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>Aplikasi Tim PPI RSJ Soerojo Magelang</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -171,6 +171,7 @@
         $(".select2").select2();
         $(".myTgl").datepicker();
         $("#tbPasienBedah").DataTable();
+        $("#tb_data_observe").DataTable();
       });
       $("#add_row_antibiotik").click(function() {
         /*$("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2 kd_obat"]) !!}</td>'+
@@ -197,51 +198,8 @@
       $("#show_add_observasi").click(function(){
         //$("#testappend").append('tessting');
         $("#hasiPencarianPasien").html("");
-      });
-      //control buttons
-      $("#cariPasienBedah").click(function(){
-        //alert();
-        cari_pasien_bedah($("#cari_nama").val(),$("#cari_id_pasien").val(),$("#cari_id_registrasi").val(),$("#cari_tgl_registrasi").val());
-      });
-
-      $("#ilorj_cari_pasien_bedah").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/ilorj/cari-pasien-bedah",
-          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#hasiPencarianPasien").html(msg);
-        });
-      });
-
-      $("#hasiPencarianPasien").on('click','.data_pasien_add',function(){
-        $.ajax({
-          type: "POST",
-          url: "/ilori/add-observe",
-          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
-        }).done(function(msg){
-          console.log(msg);
-          alert(msg[0].pesan);
-          location.reload();
-        });
-        $("#add_observasi").modal('hide');
-      });
-
-
-      $("#cariDataIloRi").click(function(){
-
-        $.ajax({
-          type: 'POST',
-          url: '/ilori/cari-data-observe',
-          data: {id_pasien: $("#ilori_cari_id_pasien").val(),id_registrasi: $("#ilori_cari_id_registrasi").val(),tgl_registrasi: $("#ilori_cari_tgl_registrasi").val(),tgl_transaksi: $("#ilori_cari_tgl_obs").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#tbDataIloRI").html(msg);
-          table = $("#tb-ilo-ri-observe").DataTable();
-          table.draw();
-        });
-
+        table = $("#tbPasienBedah").DataTable();
+        table.draw();
       });
 
       /*$("#simpan-ilori").click(function(){
@@ -262,23 +220,23 @@
           alert(msg[0].pesan);
         });
       });*/
-      // cari pasien bedah
-      function cari_pasien_bedah(nm_pasien,id_pasien,id_registrasi,tgl_daftar){
+
+      //VENTILATOR AP
+
+      $("#VentCariPasien").click(function(){
         $.ajax({
-          type: 'POST',
-          url: '/ilori/cari-pasien-bedah',
-          data: {nm_pasien,id_pasien,id_registrasi,tgl_daftar}
-        }).done(function(msg) {
+          type: "POST",
+          url: "/ventilator/cari-pasien",
+          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
+        }).done(function(msg){
           console.log(msg);
           $("#hasiPencarianPasien").html(msg);
         });
-      }
-
-      //ILO RJ
-      $("#hasiPencarianPasien").on('click','.ilorj_data_pasien_add',function(){
+      });
+      $("#hasiPencarianPasien").on('click','.ventilator_add',function(){
         $.ajax({
           type: "POST",
-          url: "/ilorj/add-observe",
+          url: "/ventilator/add-observe",
           data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
         }).done(function(msg){
           console.log(msg);
@@ -287,20 +245,93 @@
         });
         $("#add_observasi").modal('hide');
       });
-
-      $("#cariDataIloRj").click(function(){
-
+      $("#cariDataVentilator").click(function(){
         $.ajax({
-          type: 'POST',
-          url: '/ilorj/cari-data-observe',
-          data: {id_pasien: $("#ilorj_cari_id_pasien").val(),id_registrasi: $("#ilorj_cari_id_registrasi").val(),tgl_registrasi: $("#ilorj_cari_tgl_registrasi").val(),tgl_transaksi: $("#ilorj_cari_tgl_obs").val()}
+          type: "POST",
+          url: "/ventilator/cari-data-observe",
+          data: {id_pasien: $("#vent_cari_id_pasien").val(),id_registrasi: $("#vent_cari_id_registrasi").val(),tgl_registrasi: $("#vent_cari_tgl_registrasi").val(),tgl_transaksi: $("#vent_cari_tgl_obs").val()}
         }).done(function(msg){
           console.log(msg);
-          $("#tbDataIloRJ").html(msg);
-          table = $("#tb-ilo-rj-observe").DataTable();
+          $("#tbDataVentilator").html(msg);
+          table = $("#tb_data_observe").DataTable();
           table.draw();
         });
+      });
 
+      //PEMANTAUAN ISK
+      $("#IskCariPasien").click(function(){
+        $.ajax({
+          type: "POST",
+          url: "/isk/cari-pasien",
+          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#hasiPencarianPasien").html(msg);
+        });
+      });
+      $("#hasiPencarianPasien").on('click','.isk_add',function(){
+        $.ajax({
+          type: "POST",
+          url: "/isk/add-observe",
+          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
+        }).done(function(msg){
+          console.log(msg);
+          alert(msg[0].pesan);
+          location.reload();
+        });
+        $("#add_observasi").modal('hide');
+      });
+      $("#cariDataIsk").click(function(){
+        $.ajax({
+          type: "POST",
+          url: "/isk/cari-data-observe",
+          data: {id_pasien: $("#isk_cari_id_pasien").val(),id_registrasi: $("#isk_cari_id_registrasi").val(),tgl_registrasi: $("#isk_cari_tgl_registrasi").val(),tgl_transaksi: $("#isk_cari_tgl_obs").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#tbData").html(msg);
+          table = $("#tb_data_observe").DataTable();
+          table.draw();
+        });
+      });
+
+      //PHLEBITIS
+      $("#CariPasien").click(function(){
+        $.ajax({
+          type: "POST",
+          url: $(this).attr('url'),
+          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#hasiPencarianPasien").html(msg);
+          table = $("#tbPasienBedah").DataTable();
+          table.draw();
+        });
+      });
+      $("#hasiPencarianPasien").on('click','.add_to_observe',function(){
+        //alert($(this).attr('url'));
+        $.ajax({
+          type: "POST",
+          url: $(this).attr('url'),
+          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
+        }).done(function(msg){
+          console.log(msg);
+          alert(msg[0].pesan);
+          location.reload();
+        });
+        $("#add_observasi").modal('hide');
+      });
+      $("#cariDataObs").click(function(){
+        //alert($(this).attr('url'));
+        $.ajax({
+          type: "POST",
+          url: $(this).attr('url'),
+          data: {id_pasien: $("#dt_cari_id_pasien").val(),id_registrasi: $("#dt_cari_id_registrasi").val(),tgl_registrasi: $("#dt_cari_tgl_registrasi").val(),tgl_transaksi: $("#dt_cari_tgl_obs").val()}
+        }).done(function(msg){
+          console.log(msg);
+          $("#tbData").html(msg);
+          table = $("#tb_data_observe").DataTable();
+          table.draw();
+        });
       });
     </script>
 
