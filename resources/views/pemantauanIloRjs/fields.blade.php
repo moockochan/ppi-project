@@ -84,7 +84,7 @@
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('antibiotik','Antibiotik:') !!}
-                {!! Form::text('antibiotik',null,['class'=>'form-control']) !!}
+                {!! Form::select('antibiotik[]', DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,['class'=>'form-control select2','multiple',"style"=>"width:100%;"]) !!}
             </div>
             <!-- Submit Field -->
             <div class="form-group col-sm-12">

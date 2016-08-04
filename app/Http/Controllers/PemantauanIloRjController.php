@@ -122,6 +122,9 @@ class PemantauanIloRjController extends AppBaseController
 
             return redirect(route('pemantauanIloRjs.index'));
         }
+        if(empty($request['antibiotik'])){
+          $request['antibiotik']="";
+        }
         $request['tgl_pemantauan']=date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $pemantauanIloRj = $this->pemantauanIloRjRepository->update($request->all(), $id);
 

@@ -28,7 +28,7 @@
                 {!! Form::text('cari_tgl_registrasi',null,['id'=>'cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Daftar']) !!}
               </div>
               <div class="col-sm-2">
-                <input type="button" class="btn btn-default" value="Cari" id="ilorj_cari_pasien_bedah">
+                <input type="button" class="btn btn-default" value="Cari" url="/ilorj/cari-pasien-bedah" id="CariPasien">
 
               </div>
             </div>
@@ -60,24 +60,24 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-sm-2">
-                      {!! Form::text('ilorj_cari_id_pasien',null,['id'=>'ilorj_cari_id_pasien','class'=>'form-control','placeholder'=>'No. RM']) !!}
+                      {!! Form::text('dt_cari_id_pasien',null,['id'=>'dt_cari_id_pasien','class'=>'form-control','placeholder'=>'No. RM']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('ilorj_cari_id_registrasi',null,['id'=>'ilorj_cari_id_registrasi','class'=>'form-control','placeholder'=>'No Pendaftaran']) !!}
+                      {!! Form::text('dt_cari_id_registrasi',null,['id'=>'dt_cari_id_registrasi','class'=>'form-control','placeholder'=>'No Pendaftaran']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('ilorj_cari_tgl_registrasi',null,['id'=>'ilorj_cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Masuk RS']) !!}
+                      {!! Form::text('dt_cari_tgl_registrasi',null,['id'=>'dt_cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Masuk RS']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('ilorj_cari_tgl_obs',null,['id'=>'ilorj_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
+                      {!! Form::text('dt_cari_tgl_obs',null,['id'=>'dt_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
                     </div>
                     <div class="col-sm-2">
-                      <input type="button" class="btn btn-default" value="Cari" id="cariDataIloRj">
+                      <input type="button" class="btn btn-default" value="Cari" url="/ilorj/cari-data-observe" id="cariDataObs">
                     </div>
                   </div>
                 </div>
               </div>
-              <div id="tbDataIloRJ">
+              <div id="tbData">
                      @include('pemantauanIloRjs.table')
               </div>
             </div>

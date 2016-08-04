@@ -1,4 +1,4 @@
-<table id="tb-ilo-rj-observe" class="table">
+<table id="tb_data_observe" class="table">
   <thead>
     <tr>
       <th>No</th>
@@ -59,9 +59,5 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.0.3/css/buttons.dataTables.min.css">
     <script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
     <script src="vendor/datatables/buttons.server-side.js"></script>
-    <script language="javascript">
-      $("#tb-ilo-rj-observe").DataTable({
-        bFilter: false
-      });
-    </script>
+    
 @endsection

@@ -18,7 +18,7 @@
           print "<td>".$dt->id_pasien."</td>";
           print "<td>".$dt->id_registrasi."</td>";
           print "<td>".$dt->tgl_registrasi."</td>";
-          print "<td><button class='ilorj_data_pasien_add' no_transaksi='".$dt->no_transaksi."' id_registrasi='".$dt->id_registrasi."'>+</button></td>";
+          print "<td><button class='add_to_observe' url='/ilorj/add-observe' no_transaksi='".$dt->no_transaksi."' id_registrasi='".$dt->id_registrasi."'>+</button></td>";
           print "</tr>";
         }
       }
