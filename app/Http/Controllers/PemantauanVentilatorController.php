@@ -125,7 +125,9 @@ class PemantauanVentilatorController extends AppBaseController
 
             return redirect(route('pemantauanVentilators.index'));
         }
-
+        $request['tgl_pemantauan']<>'' ? $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan'])) : $request['tgl_pemantauan'] =null;
+        $request['tgl_assesment']<>'' ? $request['tgl_assesment'] = date("Y-m-d",strtotime($request['tgl_assesment'])) : $request['tgl_assesment'] =null;
+        $request['tgl_kultur']<>'' ? $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur'])) : $request['tgl_kultur'] =null;
         $pemantauanVentilator = $this->pemantauanVentilatorRepository->update($request->all(), $id);
 
         Flash::success('PemantauanVentilator updated successfully.');

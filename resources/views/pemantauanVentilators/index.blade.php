@@ -28,7 +28,7 @@
                 {!! Form::text('cari_tgl_registrasi',null,['id'=>'cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Daftar']) !!}
               </div>
               <div class="col-sm-2">
-                <input type="button" class="btn btn-default" value="Cari Vent" id="VentCariPasien">
+                <input type="button" class="btn btn-default" value="Cari" url="/ventilator/cari-pasien" id="CariPasien">
 
               </div>
             </div>
@@ -56,29 +56,29 @@
               <button type="button" id="show_add_observasi" class="btn btn-default" data-toggle="modal" data-target="#add_observasi">
                 Input Pasien
               </button>
-              
+
               <div class="box box-success">
                 <div class="box-body">
                   <div class="row">
                     <div class="col-sm-2">
-                      {!! Form::text('vent_cari_id_pasien',null,['id'=>'vent_cari_id_pasien','class'=>'form-control','placeholder'=>'No. RM']) !!}
+                      {!! Form::text('dt_cari_id_pasien',null,['id'=>'dt_cari_id_pasien','class'=>'form-control','placeholder'=>'No. RM']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('vent_cari_id_registrasi',null,['id'=>'vent_cari_id_registrasi','class'=>'form-control','placeholder'=>'No Pendaftaran']) !!}
+                      {!! Form::text('dt_cari_id_registrasi',null,['id'=>'dt_cari_id_registrasi','class'=>'form-control','placeholder'=>'No Pendaftaran']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('vent_cari_tgl_registrasi',null,['id'=>'vent_cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Masuk RS']) !!}
+                      {!! Form::text('dt_cari_tgl_registrasi',null,['id'=>'dt_cari_tgl_registrasi','class'=>'form-control myTgl','placeholder'=>'Tgl Masuk RS']) !!}
                     </div>
                     <div class="col-sm-2">
-                      {!! Form::text('vent_cari_tgl_obs',null,['id'=>'vent_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
+                      {!! Form::text('dt_cari_tgl_obs',null,['id'=>'dt_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
                     </div>
                     <div class="col-sm-2">
-                      <input type="button" class="btn btn-default" value="Cari" id="cariDataVentilator">
+                      <input type="button" class="btn btn-default" value="Cari" url="/ventilator/cari-data-observe" id="cariDataObs">
                     </div>
                   </div>
                 </div>
               </div>
-              <div id="tbDataVentilator">
+              <div id="tbData">
                 @include('pemantauanVentilators.table')
               </div>
             </div>

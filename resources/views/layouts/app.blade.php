@@ -221,43 +221,6 @@
         });
       });*/
 
-      //VENTILATOR AP
-
-      $("#VentCariPasien").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/ventilator/cari-pasien",
-          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#hasiPencarianPasien").html(msg);
-        });
-      });
-      $("#hasiPencarianPasien").on('click','.ventilator_add',function(){
-        $.ajax({
-          type: "POST",
-          url: "/ventilator/add-observe",
-          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
-        }).done(function(msg){
-          console.log(msg);
-          alert(msg[0].pesan);
-          location.reload();
-        });
-        $("#add_observasi").modal('hide');
-      });
-      $("#cariDataVentilator").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/ventilator/cari-data-observe",
-          data: {id_pasien: $("#vent_cari_id_pasien").val(),id_registrasi: $("#vent_cari_id_registrasi").val(),tgl_registrasi: $("#vent_cari_tgl_registrasi").val(),tgl_transaksi: $("#vent_cari_tgl_obs").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#tbDataVentilator").html(msg);
-          table = $("#tb_data_observe").DataTable();
-          table.draw();
-        });
-      });
-
       //PEMANTAUAN ISK
       $("#IskCariPasien").click(function(){
         $.ajax({
