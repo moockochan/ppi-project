@@ -1,4 +1,4 @@
-<table class="table" id="tbDataPasien">
+<table class="table" id="tbPasienBedah">
   <thead>
     <tr>
       <td>Nama Pasien</td>

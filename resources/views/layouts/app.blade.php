@@ -170,8 +170,8 @@
 	      });
         $(".select2").select2();
         $(".myTgl").datepicker();
-        $("#tbPasienBedah").DataTable();
-        $("#tb_data_observe").DataTable();
+        $("#tbPasienBedah").DataTable({"bFilter": false});
+        $("#tb_data_observe").DataTable({"bFilter": false});
       });
       $("#add_row_antibiotik").click(function() {
         /*$("#gridAntibiotik").append('<tr><td>{!! Form::select("kd_obat[]",DB::table("tbl_master_obat")->lists("nmobat","kdobat"),null,["class"=>"form-control select2 kd_obat"]) !!}</td>'+
@@ -221,42 +221,6 @@
         });
       });*/
 
-      //PEMANTAUAN ISK
-      $("#IskCariPasien").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/isk/cari-pasien",
-          data: {nm_pasien:$("#cari_nama").val(),id_pasien:$("#cari_id_pasien").val(),id_registrasi:$("#cari_id_registrasi").val(),tgl_registrasi:$("#cari_tgl_registrasi").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#hasiPencarianPasien").html(msg);
-        });
-      });
-      $("#hasiPencarianPasien").on('click','.isk_add',function(){
-        $.ajax({
-          type: "POST",
-          url: "/isk/add-observe",
-          data: {no_transaksi: $(this).attr('no_transaksi'),id_registrasi: $(this).attr('id_registrasi')}
-        }).done(function(msg){
-          console.log(msg);
-          alert(msg[0].pesan);
-          location.reload();
-        });
-        $("#add_observasi").modal('hide');
-      });
-      $("#cariDataIsk").click(function(){
-        $.ajax({
-          type: "POST",
-          url: "/isk/cari-data-observe",
-          data: {id_pasien: $("#isk_cari_id_pasien").val(),id_registrasi: $("#isk_cari_id_registrasi").val(),tgl_registrasi: $("#isk_cari_tgl_registrasi").val(),tgl_transaksi: $("#isk_cari_tgl_obs").val()}
-        }).done(function(msg){
-          console.log(msg);
-          $("#tbData").html(msg);
-          table = $("#tb_data_observe").DataTable();
-          table.draw();
-        });
-      });
-
       //PHLEBITIS
       $("#CariPasien").click(function(){
         $.ajax({
@@ -266,7 +230,7 @@
         }).done(function(msg){
           console.log(msg);
           $("#hasiPencarianPasien").html(msg);
-          table = $("#tbPasienBedah").DataTable();
+          table = $("#tbPasienBedah").DataTable({"bFilter": false});
           table.draw();
         });
       });
@@ -292,7 +256,7 @@
         }).done(function(msg){
           console.log(msg);
           $("#tbData").html(msg);
-          table = $("#tb_data_observe").DataTable();
+          table = $("#tb_data_observe").DataTable({"bFilter": false});
           table.draw();
         });
       });
