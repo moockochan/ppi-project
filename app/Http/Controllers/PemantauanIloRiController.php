@@ -134,11 +134,12 @@ class PemantauanIloRiController extends AppBaseController
             return redirect(route('pemantauanIloRis.index'));
         }
         //dd($request['is_profilaksis']);
+        if(isset($request['kd_obat'])){
         $data = DB::select("exec spm_PPI_ILO_RI_Antibiotik_Add @no_transaksi='".$request['no_transaksi']."',@kd_obat='".implode(",",$request['kd_obat'])."',".
                            "@tgl_awal='".implode(",",$request['tgl_awal'])."',@tgl_akhir='".implode(",",$request['tgl_akhir'])."',".
                            "@dosis='".implode(",",$request['dosis'])."',@is_po_iv_im='".implode(",",$request['is_po_iv_im'])."',@is_pengobatan='".implode(",",$request['is_pengobatan'])."',".
                            "@is_profilaksis='".implode(",",$request['is_profilaksis'])."'");
-
+        }
         $request['tgl_kultur'] = date("Y-m-d",strtotime($request['tgl_kultur']));
         $request['tgl_pemantauan'] = date("Y-m-d",strtotime($request['tgl_pemantauan']));
         $request['tgl_transaksi'] = date("Y-m-d");
