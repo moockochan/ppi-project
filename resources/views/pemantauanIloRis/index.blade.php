@@ -58,7 +58,7 @@
                 <div class="box-header">
                   <!-- Button trigger modal -->
                   <button type="button" id="show_add_observasi" class="btn btn-default" data-toggle="modal" data-target="#add_observasi">
-                    Input Pasien
+                    <i class="fa fa-plus"></i> Input Pasien
                   </button>
                 </div>
                 <div class="box-body">
