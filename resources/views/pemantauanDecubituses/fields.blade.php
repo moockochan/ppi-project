@@ -86,7 +86,7 @@
           <div class="col-md-6">
             <div class="form-group col-sm-12">
                 {!! Form::label('tgl_pencegahan', 'Tanggal Tindakan:') !!}
-                {!! Form::text('tgl_pencegahan', null, ['class' => 'form-control single-dt']) !!}
+                {!! Form::text('tgl_pencegahan', null, ['class' => 'form-control myTgl']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('is_alih_baring', 'Alih Baring(1x/2jam):') !!}

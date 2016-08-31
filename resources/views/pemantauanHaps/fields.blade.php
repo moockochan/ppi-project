@@ -86,7 +86,7 @@
           <div class="col-md-6">
             <div class="form-group col-sm-12">
                 {!! Form::label('tgl_pencegahan', 'Tanggal Tindakan:') !!}
-                {!! Form::text('tgl_pencegahan', null, ['class' => 'form-control single-dt']) !!}
+                {!! Form::text('tgl_pencegahan', null, ['class' => 'form-control myTgl']) !!}
             </div>
             <div class="form-group col-sm-12">
                 {!! Form::label('is_oral_hygiene', 'Oral hygiene (2x/hari):') !!}
