@@ -145,7 +145,7 @@
 <!-- Is-Nyeri Lokal Field -->
 <div class="form-group">
     {!! Form::label('is-nyeri_lokal', 'Is-Nyeri Lokal:') !!}
-    <p>{!! $pemantauanIadpPhlebitis->is-nyeri_lokal !!}</p>
+    <p>{!! $pemantauanIadpPhlebitis->is_nyeri_lokal !!}</p>
 </div>
 
 <!-- Is Demam Field -->

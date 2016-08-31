@@ -75,7 +75,7 @@
                       {!! Form::text('dt_cari_tgl_obs',null,['id'=>'dt_cari_tgl_obs','class'=>'form-control myTgl','placeholder'=>'Tgl. Obs. Terakhir']) !!}
                     </div>
                     <div class="col-sm-2">
-                      <input type="button" class="btn btn-default" value="Cari" url="/isk/cari-data-observe" id="cariDataIsk">
+                      <input type="button" class="btn btn-default" value="Cari" url="/isk/cari-data-observe" id="cariDataObs">
                     </div>
                   </div>
                 </div>
