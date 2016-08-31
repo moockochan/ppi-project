@@ -52,6 +52,7 @@ class User extends Model
 
     public $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
         'remember_token'
@@ -65,6 +66,7 @@ class User extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'last_name' => 'string',
         'email' => 'string',
         'password' => 'string',
         'remember_token' => 'string'

@@ -8,13 +8,13 @@
 <!-- By User Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('by_user', 'Username:') !!}
-    {!!Form::select('by_user[]', DB::table('users')->lists('name','email'),null,array('id'=>'by_user','class'=>'form-control select2','multiple'))!!}
+    {!!Form::select('by_user[]', DB::table('users')->whereNull('deleted_at')->lists('name','email'),null,array('id'=>'by_user','class'=>'form-control select2','multiple'))!!}
 </div>
 
 <!-- By Role Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('by_role', 'By Role:') !!}
-    {!!Form::select('by_role[]', DB::table('role')->lists('nama','nama'),null,array('id'=>'by_role','class'=>'form-control select2','multiple'))!!}
+    {!!Form::select('by_role[]', DB::table('role')->whereNull('deleted_at')->lists('nama','nama'),null,array('id'=>'by_role','class'=>'form-control select2','multiple'))!!}
 </div>
 <?php /*
 <!-- Created At Field -->

@@ -15,23 +15,23 @@
           {!! Form::hidden('no_transaksi',null, ['class' => 'form-control','id'=>'no_transaksi']) !!}
           <div class="form-group col-sm-12">
               {!! Form::label('id_pasien', 'No Rekam Medis:') !!}
-              {!! Form::text('id_pasien',isset($dt) ? $dt->id_pasien : null, ['class' => 'form-control','id'=>'id_pasien']) !!}
+              {!! Form::text('id_pasien',isset($dt) ? $dt->id_pasien : null, ['class' => 'form-control','id'=>'id_pasien','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('id_registrasi', 'No Pendaftaran:') !!}
-              {!! Form::text('id_registrasi', null, ['class' => 'form-control','id'=>'id_registrasi']) !!}
+              {!! Form::text('id_registrasi', null, ['class' => 'form-control','id'=>'id_registrasi','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('tgl_lahir', 'Tanggal Lahir:') !!}
-              {!! Form::text('tgl_lahir',isset($dt) ? $dt->tgl_lhr : null, ['class' => 'form-control','id'=>'tgl_lahir']) !!}
+              {!! Form::text('tgl_lahir',isset($dt) ? $dt->tgl_lhr : null, ['class' => 'form-control','id'=>'tgl_lahir','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('umur', 'Umur (Tahun):') !!}
-              {!! Form::text('umur', isset($dt) ? $dt->umur : null, ['class' => 'form-control']) !!}
+              {!! Form::text('umur', isset($dt) ? $dt->umur : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('jns_kelamin', 'Jenis Kelamin:') !!}
-              {!! Form::text('jns_kelamin',isset($dt) ? $dt->jns_kelamin : null, ['class' => 'form-control']) !!}
+              {!! Form::text('jns_kelamin',isset($dt) ? $dt->jns_kelamin : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('bb', 'Berat Badan:') !!}
@@ -43,11 +43,11 @@
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('cara_masuk', 'Cara Masuk RS:') !!}
-              {!! Form::text('cara_masuk',isset($dt) ? $dt->cara_masuk : null, ['class' => 'form-control']) !!}
+              {!! Form::text('cara_masuk',isset($dt) ? $dt->cara_masuk : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('cara_keluar', 'Cara Keluar RS:') !!}
-              {!! Form::text('cara_keluar',isset($dt) ? $dt->cara_keluar : null, ['class' => 'form-control']) !!}
+              {!! Form::text('cara_keluar',isset($dt) ? $dt->cara_keluar : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('ruang_rawat', 'Ruang Rawat:') !!}
@@ -67,15 +67,15 @@
         <div class="col-md-6">
           <div class="form-group col-sm-12">
               {!! Form::label('dpjp', 'DPJP:') !!}
-              {!! Form::text('dpjp',isset($dt) ? $dt->dpjp : null, ['class' => 'form-control']) !!}
+              {!! Form::text('dpjp',isset($dt) ? $dt->dpjp : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('raber', 'Raber dengan:') !!}
-              {!! Form::text('raber',isset($dt) ? $dt->raber : null, ['class' => 'form-control']) !!}
+              {!! Form::text('raber',isset($dt) ? $dt->raber : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
           <div class="form-group col-sm-12">
               {!! Form::label('dx_akhir', 'Diagnosa Akhir:') !!}
-              {!! Form::text('dx_akhir',isset($dt) ? $dt->dx_akhir : null, ['class' => 'form-control']) !!}
+              {!! Form::text('dx_akhir',isset($dt) ? $dt->dx_akhir : null, ['class' => 'form-control','readonly'=>'readonly']) !!}
           </div>
         </div><!-- end col 2 -->
         </div>
