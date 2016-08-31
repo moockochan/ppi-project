@@ -51,13 +51,16 @@
         @include('flash::message')
 
         <div class="clearfix"></div>
-        <div class="box box-primary">
+        <div class="box box-primary box-solid">
             <div class="box-body">
-              <!-- Button trigger modal -->
-              <button type="button" id="show_add_observasi" class="btn btn-default" data-toggle="modal" data-target="#add_observasi">
-                Input Pasien
-              </button>
-              <div class="box box-success">
+
+              <div class="box box-primary box-solid">
+                <div class="box-header">
+                  <!-- Button trigger modal -->
+                  <button type="button" id="show_add_observasi" class="btn btn-default" data-toggle="modal" data-target="#add_observasi">
+                    Input Pasien
+                  </button>
+                </div>
                 <div class="box-body">
                   <div class="row">
                     <div class="col-sm-2">

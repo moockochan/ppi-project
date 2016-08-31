@@ -51,8 +51,9 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
+        $request['password'] = bcrypt($request['password']);
         $input = $request->all();
-        dd($input);
+        //dd($input);
         $user = $this->userRepository->create($input);
 
         Flash::success('User saved successfully.');

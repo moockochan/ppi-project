@@ -4,6 +4,7 @@
     <section class="sidebar">
 
         <!-- Sidebar user panel (optional) -->
+        <?php /*
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
@@ -29,7 +30,7 @@
             </button>
           </span>
             </div>
-        </form>
+        </form> */ ?>
         <!-- Sidebar Menu -->
 
         <ul class="sidebar-menu">

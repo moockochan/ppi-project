@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator</title>
+    <title>Aplikasi Tim PPI RSJ Soerojo Magelang</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -32,10 +32,17 @@
 
 </head>
 <body class="hold-transition login-page">
+<div  class="box box-solid box-primary">
+  <div class="box-body" style="text-align: center">
+    <h3>Selamat Datang di Aplikasi Pemantauan Kuman<br>
+    Tim PPI RSJ Prof. Dr. Soerojo Magelang</h3>
+  </div>
+</div>
 <div class="login-box">
+  <?php /*
     <div class="login-logo">
         <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
-    </div>
+    </div> */ ?>
 
     <!-- /.login-logo -->
     <div class="login-box-body">
