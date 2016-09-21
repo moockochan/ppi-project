@@ -5,16 +5,16 @@
     <title>Aplikasi Tim PPI RSJ Soerojo Magelang</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{ asset('/vendor/adminLTE/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/font_awsome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/AdminLTE.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/vendor/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/jquery-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/simplePagination.css') }}">
     <link rel="stylesheet" href="{{ asset('/vendor/style.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ asset('/vendor/ionicons/css/ionicons.min.css') }}">
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -147,17 +147,17 @@
     @endif
 
     <!-- jQuery 2.1.4 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+    <script src="{{ asset('/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('/vendor/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/vendor/select2.min.js') }}"></script>
+    <script src="{{ asset('/vendor/icheck.min.js') }}"></script>
 
     <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
+    <script src="{{ asset('/vendor/app.min.js') }}"></script>
 
     <!-- Datatables -->
-    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.11/js/dataTables.bootstrap.min.js"></script>
+    <script src="{{ asset('/vendor/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('/vendor/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('/vendor/jquery-ui.js') }}"></script>
 
     @yield('scripts')
