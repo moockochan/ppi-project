@@ -10,6 +10,7 @@ use App\Repositories\UserRepository;
 use Flash;
 use InfyOm\Generator\Controller\AppBaseController;
 use Response;
+use App\Models\User;
 
 class UserController extends AppBaseController
 {
@@ -112,7 +113,13 @@ class UserController extends AppBaseController
     public function update($id, UpdateUserRequest $request)
     {
         $user = $this->userRepository->findWithoutFail($id);
+        if($id==1){
+          if($request['user_id'] != 1){
+            Flash::error('Hanya Admin yang bisa mengganti user Admin');
 
+            return redirect(route('users.index'));
+          }
+        }
         if (empty($user)) {
             Flash::error('User not found');
 
