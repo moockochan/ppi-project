@@ -12,7 +12,6 @@
            <div class="box-body">
                <div class="row">
                    {!! Form::model($pemantauanIsk, ['route' => ['pemantauanIsks.update', $pemantauanIsk->id], 'method' => 'patch']) !!}
-                      {!! csrf_field() !!}
                       @foreach($data as $dt)
                         @include('pemantauanIsks.fields')
                       @endforeach

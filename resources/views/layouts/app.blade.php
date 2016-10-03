@@ -165,11 +165,11 @@
 
     <script language="javascript">
       $(document).ready(function(){
-        $.ajaxSetup({
+        /*$.ajaxSetup({
 	        headers: {
 	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	        }
-	      });
+	      });*/
         $(".select2").select2();
         $(".myTgl").datepicker();
         $("#tbPasienBedah").DataTable({"bFilter": false});
