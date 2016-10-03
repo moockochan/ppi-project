@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('/vendor/style.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('/vendor/ionicons/css/ionicons.min.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body class="skin-blue sidebar-mini">
@@ -161,7 +162,7 @@
     <script src="{{ asset('/vendor/jquery-ui.js') }}"></script>
 
     @yield('scripts')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <script language="javascript">
       $(document).ready(function(){
         $.ajaxSetup({
