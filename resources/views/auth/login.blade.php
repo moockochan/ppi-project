@@ -112,7 +112,7 @@
 
     $(document).ready(function(){
       document.getElementById("pass").value = "";
-      $("#remember").prop('checked',true);
+      //$("#remember").prop('checked',true);
     });
 </script>
 </body>
