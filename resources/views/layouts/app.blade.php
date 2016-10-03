@@ -225,6 +225,11 @@
 
       //PHLEBITIS
       $("#CariPasien").click(function(){
+        $.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	      });
         $.ajax({
           type: "POST",
           url: $(this).attr('url'),
@@ -238,6 +243,11 @@
       });
       $("#hasiPencarianPasien").on('click','.add_to_observe',function(){
         //alert($(this).attr('url'));
+        $.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	      });
         $.ajax({
           type: "POST",
           url: $(this).attr('url'),
@@ -251,6 +261,11 @@
       });
       $("#cariDataObs").click(function(){
         //alert($(this).attr('url'));
+        $.ajaxSetup({
+	        headers: {
+	            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	        }
+	      });
         $.ajax({
           type: "POST",
           url: $(this).attr('url'),
